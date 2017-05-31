@@ -37,10 +37,7 @@ def new_length(direction):
     p_set |= set(new_p_list)
 
 if __name__ == '__main__':
-    import time
-    start = time.time()
     while pright_list[-1] and pleft_list[-1] and len(pright.intersection(pleft)) < 11: 
         new_length('r')
         new_length('l')
     print(sum(pright.intersection(pleft)))
-    print(time.time()-start)

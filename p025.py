@@ -1,5 +1,3 @@
-import time
-start = time.time()
 memo = {1:1, 2:1}
 
 def febonacci(n):
@@ -12,4 +10,4 @@ def febonacci(n):
 if __name__ == '__main__':
     n = 1
     while febonacci(n) < 10**999: n+=1
-    print(n, time.time() - start)
+    print(n)

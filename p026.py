@@ -23,8 +23,7 @@ def factor(n):
     return factors
 
 def find_prime_length(p):
-    r = 1
-    length = 0
+    r, length = 1, 0
     while True:
         while r < p: 
             r *= 10
@@ -43,8 +42,7 @@ for p in primes:
 def gcd(a,b):
     if a<b: a,b = b,a
     r = a%b
-    while r != 0:
-        r, a, b = a%b, b, r
+    while r != 0: r, a, b = a%b, b, r
     return b
 def lcm(a,b):
     return a*b//gcd(a,b)
@@ -58,14 +56,8 @@ def cycle_length(n):
         l = lcm(l, c_len)
     return l
 
-if __name__ == '__main__':
-    import time
-    start = time.time()
-    m, max_n = 0, 0
-    for n in range(2, N): 
-        c_len = cycle_length(n)
-        if c_len > m: 
-            m, max_n = c_len, n
-    print(max_n)
-    print(time.time()-start)
-
+m, max_n = 0, 0
+for n in range(2, N): 
+    c_len = cycle_length(n)
+    if c_len > m: m, max_n = c_len, n
+print(max_n)

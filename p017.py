@@ -30,16 +30,14 @@ numbers = {
     100: 7,
     1000: 12,
 }
+
 def find_letters(n):
     if n in numbers: return numbers[n]
     if n > 100: return find_letters(n//100)+find_letters(100)+3+find_letters(int(str(n)[1:]))
     return find_letters(int(str(n)[0])*10)+find_letters(int(str(n)[1]))
 
 total = 0
-for i in range(1,1001):
-    total += find_letters(i)
+for i in range(1,1001): total += find_letters(i)
 
 total -= 3*8 
-
-if __name__ == '__main__':
-    print(total)
+print(total)

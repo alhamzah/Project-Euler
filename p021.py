@@ -1,52 +1,39 @@
-primes = [2]
-primes_set = set()
-def find_next_prime():
-    n, found = primes[-1], False
-    while not found:
-        found = True
-        n += 1
+def ESieve(N):
+    l = [True for i in range(N)]
+    l[0]=l[1]=False
+
+    for p, isprime in enumerate(l):
+        if isprime:
+            for i in range(p*p, N, p):
+                l[i] = False
+    return [p for p, isprime in enumerate(l) if isprime]
+
+N = 10**4+1
+primes = ESieve(N)
+
+def factor(n):
+    factors = []
+    while n > 1:
         for p in primes:
-            if n%p == 0: 
-                found = False
-                break
-    primes.append(n)
-    primes_set.add(n)
-    # memo{n:1}
-
-def find_prime_divisors(n):
-    while n > primes[-1]: find_next_prime()
-    divisors = []
-    for p in primes:
-        if n%p == 0: divisors.append((p, find_prime_degree(n, p)))
-    return divisors
-
-def find_prime_degree(n, p):
-    counter = 0
-    while n%p == 0: 
-        counter += 1
-        n = n//p
-    return counter
+            deg = 0
+            while n%p == 0:
+                n = n//p
+                deg += 1
+            if deg: factors.append((p, deg))
+    return factors
 
 def divisors_sum(n):
-    prime_div = find_prime_divisors(n)
+    prime_div = factor(n)
     total = 1
-    for p,a in prime_div:
-        total *= (p**(a+1)-1)//(p-1)
+    for p,a in prime_div: total *= (p**(a+1)-1)//(p-1)
     return total - n
 
-ints = {}
-
-for i in range(2,10000):
-    ints[i] = divisors_sum(i)
+divs_sum = {}
+for i in range(1,10000): divs_sum[i] = divisors_sum(i)
 
 total = 0
 for i in range(3,10000):
-    for j in range(2,i):
-        if ints[i] == j and ints[j] == i: total+= (i+j)
+    j = divs_sum[i]
+    if j<i and divs_sum[j] == i: total+= (i+j)
 
-
-
-
-if __name__ == '__main__':
-    print(ints)
-    print(total)
+print(total)

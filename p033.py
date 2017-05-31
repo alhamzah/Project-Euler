@@ -16,5 +16,4 @@ def f_list(p,q):
     if p[1] == q[1]: f.append((p[0], q[0]))
     return f
 
-if __name__ == '__main__':
-    print(check_curious())
+print(check_curious())

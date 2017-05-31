@@ -13,13 +13,7 @@ def ESieve(N):
         if isprime: primes.append(i)
     return primes
 
-# def premute(n):
-    # s = str(n)
-
-
-
-primes = set(ESieve(10**6))
-c_primes = set()
+primes, c_primes = set(ESieve(10**6)), set()
 
 def find_perms():
     for p in primes:
@@ -28,7 +22,6 @@ def find_perms():
         for i in range(len(str(p))):
             d.rotate(1)
             perms.append(''.join(d))
-        # print(perms)
         c = True
         for perm in perms:
             if int(perm) not in primes: 
@@ -36,11 +29,8 @@ def find_perms():
                 break
         if c: c_primes.add(p)
 
-
-if __name__ == '__main__':
-    find_perms()
-    print(c_primes)
-    print(len(c_primes))
+find_perms()
+print(len(c_primes))
 
 
 

@@ -15,8 +15,7 @@ def find_digit(n):
     ord_n = (n-limits[l][0])//l
     return int(str(10**(l-1)+ord_n)[(n-limits[l][0])%l])
 
-if __name__ == '__main__':
-    product = 1
-    for i in range(2,7):
-        product *= find_digit(10**i)
-    print(product)
+product = 1
+for i in range(2,7):
+    product *= find_digit(10**i)
+print(product)

@@ -20,8 +20,7 @@ def count_days(m, y):
             if days % 7 == 0: sundays += 1
     return sundays
 
-if __name__ == '__main__':
-    print(count_days(1, 2001))
+print(count_days(1, 2001))
 
 
 

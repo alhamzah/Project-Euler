@@ -15,15 +15,14 @@ T = '''75
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23'''
 
 T = T.split('\n')
-for r in range(len(T)):
-    T[r] = T[r].split(' ')
+for r in range(len(T)): T[r] = T[r].split(' ')
 for r in range(len(T)):
     for c in range(len(T[r])):
         T[r][c] = int(T[r][c])
 
 parent = {(0,0): 0}
 
-def bfs():
+def dp():
     for r in range(len(T)):
         for c in range(len(T[r])):
             score = parent[(r,c)]+T[r][c]
@@ -31,6 +30,5 @@ def bfs():
             if (r+1, c+1) not in parent or parent[(r+1,c+1)] < score: parent[(r+1,c+1)] = score
 
 if __name__ == '__main__':
-    bfs()
-    print(parent)
+    dp()
     print(max(parent.values()))

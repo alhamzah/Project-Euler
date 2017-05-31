@@ -51,5 +51,4 @@ def solve(S):
 
     return best
 
-if __name__ == "__main__":
-    print(solve(S))
+print(solve(S))
